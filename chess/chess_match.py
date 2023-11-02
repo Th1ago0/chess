@@ -15,4 +15,5 @@ class ChessMatch:
         return matrix;
     
     def setup(self):
-        self.board.place_piece(Rook(self.board, "WHITE"), Position(3, 2));
+        self.board.place_piece(Rook(self.board, "WHITE"), Position(5, 2));
+        self.board.place_piece(Rook(self.board, "WHITE"), Position(5, 2));
