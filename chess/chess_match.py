@@ -1,11 +1,36 @@
 from boardgame.board import Board
 from .rook import Rook
-from boardgame.position import Position
+from .king import King
+from .chess_position import ChessPosition
+from .chess_exception import ChessException
 
 class ChessMatch:
     def __init__(self):
         self.board = Board(8, 8);
         self.setup();
+    
+    def perform_chess_move(self, source_position, target_position):
+        source = source_position.to_position();
+        target = target_position.to_position();
+        self.validate_source_position(source);
+        self.validate_target_position(source, target)
+        captured_piece = self.make_move(source, target);
+        return captured_piece;
+    
+    def make_move(self, source, target):
+        piece = self.board.remove_piece(source);
+        captured_piece = self.board.remove_piece(target);
+        self.board.place_piece(piece, target);
+        return captured_piece;
+    
+    def validate_target_position(self, source, target):
+        if not self.board.piece(source.get_row(), source.get_column()).possible_move(target):
+            raise ChessException("The chosen piece can not move to target position ")
+            
+    
+    def validate_source_position(self, position):
+        if not self.board.there_is_piece(position):
+            raise ChessException("There is no piece on source position");
     
     def get_pieces(self):
         matrix = [[None for _ in range(self.board.get_rows())] for _ in range(self.board.get_columns())];
@@ -14,6 +39,18 @@ class ChessMatch:
                 matrix[i][j] = self.board.piece(i, j);
         return matrix;
     
+    def place_new_piece(self, column, row, piece):
+        self.board.place_piece(piece, ChessPosition(column, row).to_position())
+    
     def setup(self):
-        self.board.place_piece(Rook(self.board, "WHITE"), Position(5, 2));
-        self.board.place_piece(Rook(self.board, "WHITE"), Position(5, 2));
+        self.place_new_piece("b", 1, Rook(self.board, "WHITE"))
+        self.place_new_piece("b", 2, Rook(self.board, "WHITE"))
+        self.place_new_piece("c", 1, Rook(self.board, "WHITE"))
+        self.place_new_piece("c", 2, Rook(self.board, "WHITE"))
+        self.place_new_piece("b", 7, Rook(self.board, "BLACK"))
+        self.place_new_piece("b", 8, Rook(self.board, "BLACK"))
+        self.place_new_piece("c", 7, Rook(self.board, "BLACK"))
+        self.place_new_piece("c", 8, Rook(self.board, "BLACK"))
+
+        self.place_new_piece("d", 4, King(self.board, "BLACK"))
+        self.place_new_piece("e", 5, King(self.board, "WHITE"))

@@ -17,3 +17,7 @@ class Position:
         
     def get_column(self):
         return self.column;
+    
+    def set_values(self, row, column):
+        self.row = row
+        self.column = column

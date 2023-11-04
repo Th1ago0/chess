@@ -7,3 +7,7 @@ class ChessPiece(Piece):
     
     def get_color(self):
         return self.color;
+    
+    def is_there_opponent_piece(self, position):
+        piece = self.get_board().piece(position.get_row(), position.get_column())
+        return piece != None and piece.get_color() != self.color;
