@@ -5,15 +5,15 @@ class Board:
         if rows != 8 or columns != 8:
             raise BoardException("Error when building the board: the board must have 8 rows and 8 columns");
         
-        self.rows = rows;
-        self.columns = columns;
+        self.__rows = rows;
+        self.__columns = columns;
         self.pieces = [[None for _ in range(rows)] for _ in range(columns)];
         
     def get_rows(self):
-        return self.rows;
+        return self.__rows;
         
     def get_columns(self):
-        return self.columns;
+        return self.__columns;
         
     def piece(self, row, column):
         if not self.position_exists(row, column):
@@ -27,7 +27,7 @@ class Board:
         piece.position = position;
         
     def position_exists(self, row, column):
-        return row >= 0 and row < self.rows and column >= 0 and column < self.columns;
+        return row >= 0 and row < self.__rows and column >= 0 and column < self.__columns;
     
     def there_is_piece(self, position):
         if not self.position_exists(position.get_row(), position.get_column()):

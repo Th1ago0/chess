@@ -1,21 +1,25 @@
 from .chess_piece import ChessPiece
 from boardgame.position import Position
 
+## Rook piece
 class Rook(ChessPiece):
     def __init__(self, board, color):
         super().__init__(board, color)
     
-    def str(self):
-        return "\u2656";
-        
-    def str_black(self):
-        return "\u265c";
+    def __str__(self):
+        if self.get_color() == "WHITE":
+            return "\u2656";
+        else:
+            return "\u265c";
+    
+    # Possible rook moves
     def possible_moves(self):
         
+        # Two-dimensional vector containing the possible movements
         matrix = [[ False for _ in range(8)] for _ in range(8)]
-        
         pos = Position(0, 0)
-        # Up
+
+        # Above possible moves
         pos.set_values(self.position.get_row()-1,self.position.get_column())
         while self.get_board().position_exists(pos.get_row(), pos.get_column()) and not self.get_board().there_is_piece(pos):
 
@@ -24,9 +28,8 @@ class Rook(ChessPiece):
     
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.is_there_opponent_piece(pos):
             matrix[pos.get_row()][pos.get_column()] = True
-            
-            
-        # Below
+
+        # Below possible moves
         pos.set_values(self.position.get_row()+1,self.position.get_column())
         while self.get_board().position_exists(pos.get_row(), pos.get_column()) and not self.get_board().there_is_piece(pos):
 
@@ -35,10 +38,8 @@ class Rook(ChessPiece):
     
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.is_there_opponent_piece(pos):
             matrix[pos.get_row()][pos.get_column()] = True
-            
-            
-            
-        # Left
+
+        # Left possible moves
         pos.set_values(self.position.get_row(), self.position.get_column()-1)
         while self.get_board().position_exists(pos.get_row(), pos.get_column()) and not self.get_board().there_is_piece(pos):
 
@@ -48,8 +49,9 @@ class Rook(ChessPiece):
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.is_there_opponent_piece(pos):
             matrix[pos.get_row()][pos.get_column()] = True
         
-        # Right
         pos.set_values(self.position.get_row(), self.position.get_column()+1)
+
+        # Right possible moves
         while self.get_board().position_exists(pos.get_row(), pos.get_column()) and not self.get_board().there_is_piece(pos):
 
             matrix[pos.get_row()][pos.get_column()] = True

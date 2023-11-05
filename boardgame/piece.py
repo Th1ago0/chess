@@ -2,11 +2,11 @@ from abc import ABC, abstractmethod
 
 class Piece(ABC):
     def __init__(self, board):
-        self.board = board;
+        self.__board = board;
         self.position = None;
         
     def get_board(self):
-        return self.board;
+        return self.__board;
     
     @abstractmethod
     def possible_moves(self):

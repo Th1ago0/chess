@@ -10,34 +10,50 @@ class Graphic:
        # For Unix based systems;
        else:
             os.system('clear')
+    
+    def print_captured_pieces(self, pieces):
+        white = list(filter(lambda x: x.get_color() == "WHITE", pieces))
+        white = list(filter(lambda x: x.get_color() == "BLACK", pieces))
+
+
+    def print_match(self, chess_match):
+        self.print_graphics(chess_match.get_pieces())
+        print()
+        print(f"Turn: {chess_match.get_turn()}")
+        print(f"Waiting Player: {chess_match.get_current_player()}")
 
     # Prints the graphics and the coordinates;
-    def print_graphics(self, pieces):
+    def print_graphics(self, pieces, possible_moves=False):
         for i in range(len(pieces)):
             print(8 - i, end="  ");
             for j in range(len(pieces)):
                 if (i+j) % 2 == 0:
-                    self._print_piece(pieces[i][j], "WHITE");
+                    if possible_moves:
+                        self.print_piece_bg(pieces[i][j], "WHITE", possible_moves[i][j]);
+                    else:
+                        self.print_piece_bg(pieces[i][j], "WHITE");
                 else:
-                    self._print_piece(pieces[i][j], "BLACK");
+                    if possible_moves:
+                        self.print_piece_bg(pieces[i][j], "BLACK", possible_moves[i][j]);
+                    else:
+                        self.print_piece_bg(pieces[i][j], "BLACK");
+
             print();
         print("    a  b  c  d  e  f  g  h")
 
-    # Prints the piece and identifies the piece color;
-    def _print_piece(self, piece, color):
-        if color == "WHITE":
-            board_color = "\033[100m"
+    # Prints the piece and the background;
+    def print_piece_bg(self, piece, bg_color, possible_move=False):
+        if bg_color == "WHITE":
+            board_color = "\033[48;2;128;160;96m"
         else:
-            board_color = "\033[47m"
+            board_color = "\033[48;2;238;238;210m"
+        if possible_move:
+            board_color = "\033[48;5;195m"
         if piece == None:
             print(f"{board_color}   \033[0m", end="");
         else:
-            if piece.get_color() == "WHITE":
-                #board_color = f"{board_color[:4]}97;{board_color[4:]}"
-                print(f"{board_color}\033[30m {piece.str()} \033[0m", end="");
-            else:
-                #board_color = f"{board_color[:4]}30;{board_color[4:]}"
-                print(f"{board_color}\033[30m {piece.str_black()} \033[0m", end="");
+
+            print(f"{board_color}\033[30m {piece.__str__()} \033[0m", end="");
 
     # Reads the chess position given by the user, it receives the coordinates ("a", 1) and not the literal position (0, 0);
     def read_chess_position(self):

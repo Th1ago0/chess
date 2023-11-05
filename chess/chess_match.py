@@ -7,7 +7,28 @@ from .chess_exception import ChessException
 class ChessMatch:
     def __init__(self):
         self.board = Board(8, 8);
+        self.__turn = 1
+        self.__current_player = "WHITE"
         self.setup();
+    
+    def next_turn(self):
+        self.__turn += 1
+        if self.__current_player == "WHITE":
+            self.__current_player = "BLACK" 
+        else:
+            self.__current_player = "WHITE" 
+            
+
+    def get_turn(self):
+        return self.__turn
+
+    def get_current_player(self):
+        return self.__current_player
+
+    def possible_moves(self, source_position):
+        source = source_position.to_position()
+        self.validate_source_position(source)
+        return self.board.piece(source.get_row(), source.get_column()).possible_moves()
     
     def perform_chess_move(self, source_position, target_position):
         source = source_position.to_position();
@@ -15,6 +36,7 @@ class ChessMatch:
         self.validate_source_position(source);
         self.validate_target_position(source, target)
         captured_piece = self.make_move(source, target);
+        self.next_turn()
         return captured_piece;
     
     def make_move(self, source, target):
@@ -29,8 +51,15 @@ class ChessMatch:
             
     
     def validate_source_position(self, position):
+        piece = self.board.piece(position.get_row(), position.get_column())
         if not self.board.there_is_piece(position):
             raise ChessException("There is no piece on source position");
+        
+        if self.get_current_player() != piece.get_color():
+            raise ChessException("The chosen piece is not yours")
+        
+        if not piece.is_there_any_possible_move():
+            raise ChessException("The chosen piece has no possible move")
     
     def get_pieces(self):
         matrix = [[None for _ in range(self.board.get_rows())] for _ in range(self.board.get_columns())];
