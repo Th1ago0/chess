@@ -109,6 +109,8 @@ class ChessMatch:
         self.board.place_piece(piece, source)
         if captured_piece != None:
             self.board.place_piece(captured_piece, target)
+            self.captured_pieces.remove(captured_piece)
+            self.pieces_on_the_board.append(captured_piece)
             
     
     def make_move(self, source, target):
@@ -153,7 +155,7 @@ class ChessMatch:
         self.place_new_piece("b", 2, Rook(self.board, "WHITE"))
         self.place_new_piece("c", 1, Rook(self.board, "WHITE"))
         self.place_new_piece("c", 2, Rook(self.board, "WHITE"))
-        self.place_new_piece("e", 8, Rook(self.board, "BLACK"))
+        self.place_new_piece("g", 7, Rook(self.board, "BLACK"))
         self.place_new_piece("g", 8, Rook(self.board, "BLACK"))
         self.place_new_piece("h", 8, Rook(self.board, "BLACK"))
         self.place_new_piece("f", 8, Rook(self.board, "BLACK"))
