@@ -27,7 +27,7 @@ class Rook(ChessPiece):
             pos.set_row(pos.get_row()-1)
     
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.is_there_opponent_piece(pos):
-            matrix[pos.get_row()][pos.get_column()] = True
+            matrix[pos.get_row()][pos.get_column()] = "piece"
 
         # Below possible moves
         pos.set_values(self.position.get_row()+1,self.position.get_column())
@@ -37,7 +37,7 @@ class Rook(ChessPiece):
             pos.set_row(pos.get_row()+1)
     
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.is_there_opponent_piece(pos):
-            matrix[pos.get_row()][pos.get_column()] = True
+            matrix[pos.get_row()][pos.get_column()] = "piece"
 
         # Left possible moves
         pos.set_values(self.position.get_row(), self.position.get_column()-1)
@@ -47,7 +47,7 @@ class Rook(ChessPiece):
             pos.set_column(pos.get_column()-1)
     
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.is_there_opponent_piece(pos):
-            matrix[pos.get_row()][pos.get_column()] = True
+            matrix[pos.get_row()][pos.get_column()] = "piece"
         
         pos.set_values(self.position.get_row(), self.position.get_column()+1)
 
@@ -58,6 +58,6 @@ class Rook(ChessPiece):
             pos.set_column(pos.get_column()+1)
     
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.is_there_opponent_piece(pos):
-            matrix[pos.get_row()][pos.get_column()] = True
+            matrix[pos.get_row()][pos.get_column()] = "piece"
 
         return matrix

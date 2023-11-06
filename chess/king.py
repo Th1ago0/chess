@@ -22,41 +22,65 @@ class King(ChessPiece):
         # Above possible moves
         pos.set_values(self.position.get_row() - 1, self.position.get_column())
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.can_move(pos):
-            matrix[pos.get_row()][pos.get_column()] = True
+            if self.is_there_opponent_piece(pos):
+                matrix[pos.get_row()][pos.get_column()] = "piece"
+            else:
+                matrix[pos.get_row()][pos.get_column()] = True
         
         # Below possible moves
         pos.set_values(self.position.get_row() + 1, self.position.get_column())
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.can_move(pos):
-            matrix[pos.get_row()][pos.get_column()] = True
+            if self.is_there_opponent_piece(pos):
+                matrix[pos.get_row()][pos.get_column()] = "piece"
+            else:
+                matrix[pos.get_row()][pos.get_column()] = True
         
         # Left possible moves
         pos.set_values(self.position.get_row(), self.position.get_column() - 1)
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.can_move(pos):
-            matrix[pos.get_row()][pos.get_column()] = True
+            if self.is_there_opponent_piece(pos):
+                matrix[pos.get_row()][pos.get_column()] = "piece"
+            else:
+                matrix[pos.get_row()][pos.get_column()] = True
         
         # Right possible moves
         pos.set_values(self.position.get_row(), self.position.get_column() + 1)
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.can_move(pos):
-            matrix[pos.get_row()][pos.get_column()] = True
+            if self.is_there_opponent_piece(pos):
+                matrix[pos.get_row()][pos.get_column()] = "piece"
+            else:
+                matrix[pos.get_row()][pos.get_column()] = True
         
         # Nw possible moves
         pos.set_values(self.position.get_row() - 1, self.position.get_column() - 1)
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.can_move(pos):
-            matrix[pos.get_row()][pos.get_column()] = True
+            if self.is_there_opponent_piece(pos):
+                matrix[pos.get_row()][pos.get_column()] = "piece"
+            else:
+                matrix[pos.get_row()][pos.get_column()] = True
         
         # Ne
         pos.set_values(self.position.get_row() - 1, self.position.get_column() + 1)
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.can_move(pos):
-            matrix[pos.get_row()][pos.get_column()] = True
+            if self.is_there_opponent_piece(pos):
+                matrix[pos.get_row()][pos.get_column()] = "piece"
+            else:
+                matrix[pos.get_row()][pos.get_column()] = True
         
         # Se
         pos.set_values(self.position.get_row() + 1, self.position.get_column() + 1)
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.can_move(pos):
-            matrix[pos.get_row()][pos.get_column()] = True
+            if self.is_there_opponent_piece(pos):
+                matrix[pos.get_row()][pos.get_column()] = "piece"
+            else:
+                matrix[pos.get_row()][pos.get_column()] = True
 
         # Sw
         pos.set_values(self.position.get_row() + 1, self.position.get_column() - 1)
         if self.get_board().position_exists(pos.get_row(), pos.get_column()) and self.can_move(pos):
-            matrix[pos.get_row()][pos.get_column()] = True
+            if self.is_there_opponent_piece(pos):
+                matrix[pos.get_row()][pos.get_column()] = "piece"
+            else:
+                matrix[pos.get_row()][pos.get_column()] = True
         
         return matrix

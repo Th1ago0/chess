@@ -49,14 +49,20 @@ class Graphic:
 
     # Prints the piece and the background;
     def print_piece_bg(self, piece, bg_color, possible_move=False):
+        content = " "
         if bg_color == "WHITE":
             board_color = "\033[48;2;128;160;96m"
         else:
             board_color = "\033[48;2;238;238;210m"
-        if possible_move:
+        if possible_move == True:
+            #board_color = "\033[48;5;195m"
+            content = "\033[38;5;252m\u25CF"
+        elif possible_move == "piece":
             board_color = "\033[48;5;195m"
+        
+            
         if piece == None:
-            print(f"{board_color}   \033[0m", end="");
+            print(f"{board_color} {content} \033[0m", end="");
         else:
 
             print(f"{board_color}\033[30m {piece.__str__()} \033[0m", end="");
