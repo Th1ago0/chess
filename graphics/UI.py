@@ -11,16 +11,22 @@ class Graphic:
        else:
             os.system('clear')
     
-    def print_captured_pieces(self, pieces):
-        white = list(filter(lambda x: x.get_color() == "WHITE", pieces))
-        white = list(filter(lambda x: x.get_color() == "BLACK", pieces))
+    #def print_captured_pieces(self, pieces):
+    #    white = list(filter(lambda x: x.get_color() == "WHITE", pieces))
+    #    white = list(filter(lambda x: x.get_color() == "BLACK", pieces))
 
 
     def print_match(self, chess_match):
         self.print_graphics(chess_match.get_pieces())
         print()
         print(f"Turn: {chess_match.get_turn()}")
-        print(f"Waiting Player: {chess_match.get_current_player()}")
+        if not chess_match.get_check_mate():
+            print(f"Waiting Player: {chess_match.get_current_player()}")
+            if chess_match.get_check():
+                print("CHECK!")
+        else:
+            print("CHECKMATE!")
+            print(f"Winner: {chess_match.get_current_player()}")
 
     # Prints the graphics and the coordinates;
     def print_graphics(self, pieces, possible_moves=False):

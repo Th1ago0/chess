@@ -16,7 +16,7 @@ class ChessGame:
         graphic = Graphic()
         
         # Main game loop;
-        while True:
+        while not chess_match.get_check_mate():
             try:
                 graphic.clear_screen();
                 graphic.print_match(chess_match);
@@ -30,8 +30,10 @@ class ChessGame:
                 captured_piece = chess_match.perform_chess_move(source, target)
             except ChessException as e:
                 input(e)
-            except Exception as e:
-                input("Position is not valid")
+            #except Exception as e:
+            #    input("Position is not valid")
+        graphic.clear_screen()
+        graphic.print_match(chess_match)
 
 if __name__ == "__main__":
     ChessGame.run();
