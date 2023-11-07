@@ -7,7 +7,7 @@ from chess.chess_exception import ChessException
 # Chess game class;
 class ChessGame:
     
-    # Function to run tue game;
+    # Function to run the game;
     @classmethod
     def run(self):
         
@@ -30,8 +30,8 @@ class ChessGame:
                 captured_piece = chess_match.perform_chess_move(source, target)
             except ChessException as e:
                 input(e)
-            #except Exception as e:
-            #    input("Position is not valid")
+            except Exception as e:
+                input("Position is not valid")
         graphic.clear_screen()
         graphic.print_match(chess_match)
 
