@@ -4,6 +4,7 @@ from .king import King
 from .pawn import Pawn
 from .bishop import Bishop
 from .knight import Knight
+from .queen import Queen
 from .chess_position import ChessPosition
 from .chess_exception import ChessException
 from boardgame.position import Position
@@ -172,7 +173,7 @@ class ChessMatch:
         self.place_new_piece("g", 2, Pawn(self.board, "WHITE"))
         self.place_new_piece("h", 2, Pawn(self.board, "WHITE"))
         self.place_new_piece("d", 1, King(self.board, "WHITE"))
-        
+        self.place_new_piece("e", 1, Queen(self.board, "WHITE"))
 
         # Black pieces
         self.place_new_piece("a", 8, Rook(self.board, "BLACK"))
@@ -190,3 +191,4 @@ class ChessMatch:
         self.place_new_piece("g", 7, Pawn(self.board, "BLACK"))
         self.place_new_piece("h", 7, Pawn(self.board, "BLACK"))
         self.place_new_piece("d", 8, King(self.board, "BLACK"))
+        self.place_new_piece("e", 8, Queen(self.board, "BLACK"))
