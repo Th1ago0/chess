@@ -10,6 +10,7 @@ class ChessGame:
     # Function to run the game;
     @classmethod
     def run(self):
+
         # Instances;
         chess_match = ChessMatch();
         graphic = Graphic()
