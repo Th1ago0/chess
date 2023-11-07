@@ -2,6 +2,8 @@ from boardgame.board import Board
 from .rook import Rook
 from .king import King
 from .pawn import Pawn
+from .bishop import Bishop
+from .knight import Knight
 from .chess_position import ChessPosition
 from .chess_exception import ChessException
 from boardgame.position import Position
@@ -157,6 +159,10 @@ class ChessMatch:
         # White pieces
         self.place_new_piece("a", 1, Rook(self.board, "WHITE"))
         self.place_new_piece("h", 1, Rook(self.board, "WHITE"))
+        self.place_new_piece("c", 1, Bishop(self.board, "WHITE"))
+        self.place_new_piece("f", 1, Bishop(self.board, "WHITE"))
+        self.place_new_piece("b", 1, Knight(self.board, "WHITE"))
+        self.place_new_piece("g", 1, Knight(self.board, "WHITE"))
         self.place_new_piece("a", 2, Pawn(self.board, "WHITE"))
         self.place_new_piece("b", 2, Pawn(self.board, "WHITE"))
         self.place_new_piece("c", 2, Pawn(self.board, "WHITE"))
@@ -166,10 +172,15 @@ class ChessMatch:
         self.place_new_piece("g", 2, Pawn(self.board, "WHITE"))
         self.place_new_piece("h", 2, Pawn(self.board, "WHITE"))
         self.place_new_piece("d", 1, King(self.board, "WHITE"))
+        
 
         # Black pieces
         self.place_new_piece("a", 8, Rook(self.board, "BLACK"))
         self.place_new_piece("h", 8, Rook(self.board, "BLACK"))
+        self.place_new_piece("c", 8, Bishop(self.board, "BLACK"))
+        self.place_new_piece("f", 8, Bishop(self.board, "BLACK"))
+        self.place_new_piece("b", 8, Knight(self.board, "BLACK"))
+        self.place_new_piece("g", 8, Knight(self.board, "BLACK"))
         self.place_new_piece("a", 7, Pawn(self.board, "BLACK"))
         self.place_new_piece("b", 7, Pawn(self.board, "BLACK"))
         self.place_new_piece("c", 7, Pawn(self.board, "BLACK"))
