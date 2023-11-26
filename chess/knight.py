@@ -7,9 +7,9 @@ class Knight(ChessPiece):
 
     def __str__(self):
         if self.get_color() == "WHITE":
-            return "\u2658";
+            return "\u2658"
         else:
-            return "\u265E";
+            return "\u265E"
         
     def can_move(self, position):
         piece = self.get_board().piece(position.get_row(), position.get_column())

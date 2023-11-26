@@ -8,9 +8,9 @@ class Queen(ChessPiece):
     
     def __str__(self):
         if self.get_color() == "WHITE":
-            return "\u2655";
+            return "\u2655"
         else:
-            return "\u265B";
+            return "\u265B"
     
     # Possible rook moves
     def possible_moves(self):

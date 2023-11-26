@@ -8,9 +8,9 @@ class Rook(ChessPiece):
     
     def __str__(self):
         if self.get_color() == "WHITE":
-            return "\u2656";
+            return "\u2656"
         else:
-            return "\u265c";
+            return "\u265c"
     
     # Possible rook moves
     def possible_moves(self):

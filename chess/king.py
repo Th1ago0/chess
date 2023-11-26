@@ -7,9 +7,9 @@ class King(ChessPiece):
 
     def __str__(self):
         if self.get_color() == "WHITE":
-            return "\u2654";
+            return "\u2654"
         else:
-            return "\u265a";
+            return "\u265a"
         
     def can_move(self, position):
         piece = self.get_board().piece(position.get_row(), position.get_column())
